@@ -4,7 +4,7 @@ import FeaturedIng from '../../../assets/home/featured.jpg';
 
 const Featured = () => {
     return (
-        <section>
+        <section className='bg-my bg-fixed'>
             <SectionTitle>Featured</SectionTitle>
             <div className="md:flex justify-center items-center bg-slate-500 bg-opacity-60 pb-20 pt-12 px-36">
                 <div>
