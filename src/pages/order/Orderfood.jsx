@@ -7,7 +7,7 @@ const Orderfood = () => {
         <div>
             <Cover img={coverImg} title="Order Food" ></Cover>
             <div>
-            
+             
             </div>
         </div>
     );
