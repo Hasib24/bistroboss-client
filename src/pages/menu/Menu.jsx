@@ -16,15 +16,19 @@ const Menu = () => {
         <div>
             <Cover img={img} title="Our Menu"></Cover>
             <SectionTitle>Today's Offer</SectionTitle>
-            <MenuCategory items={offered}></MenuCategory>
+            <MenuCategory items={offered} title="offer"></MenuCategory>
+
             <SectionTitle>Pizza Offer</SectionTitle>
-            <MenuCategory items={pizza}></MenuCategory>
+            <MenuCategory items={pizza} title="pizza"></MenuCategory>
+
             <SectionTitle>Salad</SectionTitle>
-            <MenuCategory items={salad}></MenuCategory>
+            <MenuCategory items={salad} title="salad"></MenuCategory>
+
             <SectionTitle>Soup</SectionTitle>
-            <MenuCategory items={soup}></MenuCategory>
+            <MenuCategory items={soup} title="soup"></MenuCategory>
+
             <SectionTitle>Dessert</SectionTitle>
-            <MenuCategory items={dessert}></MenuCategory>
+            <MenuCategory items={dessert} title="dessert"></MenuCategory>
         </div>
     );
 };
