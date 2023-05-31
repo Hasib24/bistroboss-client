@@ -23,6 +23,8 @@ const Menu = () => {
             <MenuCategory items={salad}></MenuCategory>
             <SectionTitle>Soup</SectionTitle>
             <MenuCategory items={soup}></MenuCategory>
+            <SectionTitle>Dessert</SectionTitle>
+            <MenuCategory items={dessert}></MenuCategory>
         </div>
     );
 };
