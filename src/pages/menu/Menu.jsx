@@ -1,11 +1,11 @@
 import React from 'react';
 import Cover from '../shared/cover/Cover';
-import coverImg from '../../assets/menu/menu-bg.png';
+import img from '../../assets/menu/banner3.jpg';
 
 const Menu = () => {
     return (
         <div>
-            <Cover img={coverImg} title="Our Menu"></Cover>
+            <Cover img={img} title="Our Menu"></Cover>
         </div>
     );
 };
