@@ -6,7 +6,10 @@ import { Navigate } from 'react-router-dom';
 
 const PrivateRoutes = ({children}) => {
     
-    const {user} = useContext(AuthContex)
+    const {user, loader } = useContext(AuthContex)
+    if(loader){
+        return <div>Loading...</div>
+    }
     if(user){
         return children
     }else{
