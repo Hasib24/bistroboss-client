@@ -16,51 +16,43 @@ const AuthContextProvider = ({ children }) => {
 
 
 
-    // const createUser = (email, pass) =>{
-    //     return createUserWithEmailAndPassword(auth, email, pass)
-    // }
+    const createUser = (email, pass) =>{
+        return createUserWithEmailAndPassword(auth, email, pass)
+    }
 
-    // const signInUser = (email, pass) =>{
-    //     return signInWithEmailAndPassword(auth, email, pass)
-    // }
+    const signInUser = (email, pass) =>{
+        return signInWithEmailAndPassword(auth, email, pass)
+    }
 
-    // const googleSignIn = () =>{
-    //     return signInWithPopup(auth, googleProvider)
-    // }
-    // const logOut = () =>{
-    //         return signOut(auth)
-    // }
+    const googleSignIn = () =>{
+        return signInWithPopup(auth, googleProvider)
+    }
+    const logOut = () =>{
+            return signOut(auth)
+    }
 
-    // useEffect(()=>{
-    //     const unsubscribe = onAuthStateChanged(auth, currentUser=>{
-    //         setUser(currentUser)
-    //         setLoader(null)
-    //     })
+    useEffect(()=>{
+        const unsubscribe = onAuthStateChanged(auth, currentUser=>{
+            setUser(currentUser)
+            setLoader(null)
+        })
 
-    //     //stop observing after unmount
-    //     return unsubscribe()
-    // },[])
-
-    // const userInfo ={
-    //     user,
-    //     setUser,
-    //     loader,
-    //     setLoader,
-    //     toys,
-    //     setToys,
-    //     createUser,
-    //     signInUser,
-    //     googleSignIn,
-    //     logOut
-    // }
+        //stop observing after unmount
+        return unsubscribe()
+    },[])
 
     const userInfo ={
         user,
         setUser,
         loader,
-        setLoader
-
+        setLoader,
+        createUser,
+        signInUser,
+        googleSignIn,
+        logOut
     }
+
+ 
 
     return (
         <AuthContex.Provider value={userInfo}>

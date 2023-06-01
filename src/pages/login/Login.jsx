@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 // import { AuthContex } from './contex/AuthProvider';
-import { json, useLocation, useNavigate } from 'react-router-dom';
+import { Link, json, useLocation, useNavigate } from 'react-router-dom';
 
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 
@@ -67,7 +67,7 @@ const Login = () => {
 
     return (
         <div className='border flex justify-center'>
-
+            <h1>Login</h1>
             <form className='py-5' onSubmit={handleLogin}>
                 <input className='m-2 p-1 border rounded-md outline-none' type="email" name="email" id="email" placeholder='Enter email' required /> <br />
                 <input className='m-2 p-1 border rounded-md outline-none' type={show ? 'password' : 'text'} name="password" id="password" placeholder='Password' required /> <br />
@@ -77,8 +77,8 @@ const Login = () => {
                 <input onBlur={handleCaptaValidation} className='m-2 p-1 border rounded-md outline-none' type="captcha" ref={captaRef} name="captcha" id="captcha" placeholder='captcha' required /> <br />
 
                 <input className='m-2 p-1 border rounded-md cursor-pointer' type="submit" name="submit" id="submit" value="Login" />
+                <h1>Don't have an account? <Link to='/register' className='text-blue-500'>Regester</Link></h1>
             </form>
-            
         </div>
     );
 };
