@@ -34,35 +34,35 @@ const Login = () => {
     }
 
 
-    const handleLogin = (e) =>{
-        e.preventDefault()
-        const email = e.target.email.value;
-        const password = e.target.password.value;
+    // const handleLogin = (e) =>{
+    //     e.preventDefault()
+    //     const email = e.target.email.value;
+    //     const password = e.target.password.value;
 
-        logInUser(email, password)
-        .then(result =>{
-            let user = result.user;
-            let logedUser ={
-                email : user.email
-            }
-            setUser(user)
+        // logInUser(email, password)
+        // .then(result =>{
+        //     let user = result.user;
+        //     let logedUser ={
+        //         email : user.email
+        //     }
+        //     setUser(user)
 
-            fetch('http://localhost:5000/jwt',{
-                method: 'POST',
-                headers:{'content-type': 'application/json'},
-                body: JSON.stringify(logedUser)
-            })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                //Warning: save to localstorage
-                localStorage.setItem("Token", data.token)
+        //     fetch('http://localhost:5000/jwt',{
+        //         method: 'POST',
+        //         headers:{'content-type': 'application/json'},
+        //         body: JSON.stringify(logedUser)
+        //     })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log(data)
+        //         //Warning: save to localstorage
+        //         localStorage.setItem("Token", data.token)
             
-            })
+        //     })
 
-            // navigate(from, {replace: true})
-        })
-        .catch(error => console.log(error.message))
+        //     // navigate(from, {replace: true})
+        // })
+        // .catch(error => console.log(error.message))
     }
 
     return (
