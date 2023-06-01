@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import { AuthContex } from "../../../providers/AuthContextProvider";
 
 const NavBar = () => {
-  const { user, logOut } = useContext(AuthContex)
+  const { user, logOut, setUser } = useContext(AuthContex)
 
   const handleLogout=()=>{
-      logOut()
+
+    logOut().then(()=>setUser(null))
   }
 
     const navOptions = <>
          <li><Link to="/">Home</Link></li>
          <li><Link to="/menu">Our menu</Link></li>
          <li><Link to="/order/salad">Our menu</Link></li>
-         {user ? <li><Link>Logout</Link></li>:<li onClick={()=>handleLogout}><Link to="/login">Login</Link></li> }
+         {user ? <li onClick={handleLogout}><Link>Logout</Link></li>:<li ><Link to="/login">Login</Link></li> }
          
     </>
 

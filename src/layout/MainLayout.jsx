@@ -7,7 +7,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 const MainLayout = () => {
     const location = useLocation();
     const noHeaderFooter = location.pathname.includes('login')
-    console.log(noHeaderFooter);
+
     return (
         <main>
             {noHeaderFooter || <NavBar></NavBar>}
