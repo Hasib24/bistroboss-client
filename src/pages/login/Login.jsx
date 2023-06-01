@@ -10,13 +10,22 @@ const Login = () => {
     const {signInUser, setUser} = useContext(AuthContex)
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
+    const navigate = useNavigate();
+    const location=useLocation();
+    const from = location.state?.from?.pathname || "/";
+    
     const onSubmit = data =>{
 
         
         const email = data.email;
         const password = data.password;
         signInUser(email, password)
-        .then(data => setUser(data.user))
+        .then(data => {
+            setUser(data.user)
+            navigate(from)
+            
+        
+        })
         
     
     } 
