@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 // import { AuthContex } from './contex/AuthProvider';
 import { json, useLocation, useNavigate } from 'react-router-dom';
 
-
+import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 
 const Login = () => {
+    const captaRef = useRef()
     let [show, setShow] = useState(false);
     // import context 
     // const { logInUser, setUser } = useContext(AuthContex);
@@ -13,6 +14,24 @@ const Login = () => {
 
     // const location = useLocation();
     // const from = location.state?.from?.pathname || '/';
+
+    useEffect(()=>{
+        loadCaptchaEnginge(6); 
+    },[])
+
+    const handleCaptaValidation= ()=>{
+        const captaValue = captaRef.current.value
+        
+       if (validateCaptcha(captaValue)===true) {
+        alert('Captcha Matched');
+        
+    }
+
+    else {
+        alert('Captcha Does Not Match');
+       
+    }
+    }
 
 
     const handleLogin = (e) =>{
@@ -53,6 +72,10 @@ const Login = () => {
                 <input className='m-2 p-1 border rounded-md outline-none' type="email" name="email" id="email" placeholder='Enter email' required /> <br />
                 <input className='m-2 p-1 border rounded-md outline-none' type={show ? 'password' : 'text'} name="password" id="password" placeholder='Password' required /> <br />
                 <p onClick={()=>{setShow(!show)}}>{show ? <span>show password</span> : <span>hide password</span> }</p>
+
+                <p><LoadCanvasTemplate /></p>
+                <input onBlur={handleCaptaValidation} className='m-2 p-1 border rounded-md outline-none' type="captcha" ref={captaRef} name="captcha" id="captcha" placeholder='captcha' required /> <br />
+
                 <input className='m-2 p-1 border rounded-md cursor-pointer' type="submit" name="submit" id="submit" value="Login" />
             </form>
             
