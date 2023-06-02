@@ -4,18 +4,18 @@ import { json } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const FoodCard = ({item}) => {
-    const {name, image, price, recipe} = item;
+    const {_id, name, image, price, recipe} = item;
     const {user} = useContext(AuthContex)
 
     const handleAddToCard = item =>{
-      
+      const cardItem = {nemuItemId: _id, name, image, price, email: user?.email }
       if(user){
         fetch('http://localhost:5000/cards', {
           method : 'POST',
           headers: {
             'content-type' : 'application/json'
           },
-          body: JSON.stringify(item)
+          body: JSON.stringify(cardItem)
         }).then(res => res.json())
         .then(data => console.log(data))
 
