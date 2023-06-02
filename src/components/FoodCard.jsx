@@ -2,10 +2,13 @@ import React, { useContext } from 'react';
 import { AuthContex } from '../providers/AuthContextProvider';
 import { json } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useCard from '../hooks/useCard';
+
 
 const FoodCard = ({item}) => {
     const {_id, name, image, price, recipe} = item;
     const {user} = useContext(AuthContex)
+    const [ cart, refetch ] = useCard()
 
     const handleAddToCard = item =>{
       const cardItem = {nemuItemId: _id, name, image, price, email: user?.email }
@@ -19,6 +22,11 @@ const FoodCard = ({item}) => {
         }).then(res => res.json())
         .then(data => console.log(data))
 
+        //refetch to update cart for each item addition
+        refetch()
+        
+
+        // sweet alart
         Swal.fire({
           position: 'top-end',
           icon: 'success',
