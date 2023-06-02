@@ -19,6 +19,7 @@ const NavBar = () => {
          <li><Link to="/">Home</Link></li>
          <li><Link to="/menu">Our menu</Link></li>
          <li><Link to="/order/salad">Order</Link></li>
+         <li><Link to="/dashboard/mycart">Dashboard</Link></li>
          <li>
           <Link>
             <button className="btn">
