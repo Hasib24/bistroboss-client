@@ -8,12 +8,13 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+
 const Register = () => {
     let [show, setShow] = useState(false);
     const captaRef = useRef()
     const navigate = useNavigate()
 
-    const { setUser, createUser, updateUserProfile} = useContext(AuthContex)
+    const { setUser, createUser, googleSignIn, updateUserProfile} = useContext(AuthContex)
       
     useEffect(()=>{
         loadCaptchaEnginge(6); 
@@ -78,6 +79,18 @@ const Register = () => {
     } 
 
 
+
+        const handleGooglesignin=()=>{
+            googleSignIn()
+            .then(result =>{
+                setUser(result.user)
+                // navigate(from, {replace: true})
+            
+            })
+            .catch(error => console.log(error.message))
+           
+
+        }
     
 
   
@@ -107,6 +120,7 @@ const Register = () => {
                 <input  className='m-2 p-1 border rounded-md outline-none' type="captcha" ref={captaRef} name="captcha" id="captcha" placeholder='captcha'/> <br />
 
                 <input className='m-2 p-1 border rounded-md cursor-pointer' type="submit" name="submit" id="submit" value="Login" />
+                <button onClick={()=>handleGooglesignin()} className='text 2xl font-bold border rounded-full p-2 px-4'> G</button>
             </form>
             
         </div>

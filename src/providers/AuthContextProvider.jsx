@@ -14,6 +14,8 @@ const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loader, setLoader] = useState(true);
 
+    const googleProvider = new GoogleAuthProvider();
+
 
 
     const createUser = (email, pass) =>{
@@ -24,8 +26,11 @@ const AuthContextProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, pass)
     }
 
+
     const googleSignIn = () =>{
-        return signInWithPopup(auth, googleProvider)
+    
+        setLoader(true);
+        return signInWithPopup(auth, googleProvider);
     }
 
     const updateUserProfile =(name, photoURL)=>{
