@@ -86,7 +86,7 @@ const Register = () => {
                 setUser(result.user)
                 // navigate(from, {replace: true})
 
-                const saveUser = {name : result.user.displayNane, email : result.user.email}
+                const saveUser = {name : result.user.displayName, email : result.user.email}
                 fetch('http://localhost:5000/users',{
                     method: "POST",
                     headers: {
