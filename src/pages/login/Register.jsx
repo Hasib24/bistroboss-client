@@ -4,12 +4,14 @@ import { AuthContex } from '../../providers/AuthContextProvider';
 
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Register = () => {
     let [show, setShow] = useState(false);
     const captaRef = useRef()
+    const navigate = useNavigate()
 
     const { setUser, createUser, updateUserProfile} = useContext(AuthContex)
       
@@ -33,15 +35,39 @@ const Register = () => {
 
             updateUserProfile(name, photoURL)
             .then(()=>{
-                setUser(res.user)
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'User created successfully.',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                reset();
+
+                const saveUser = {name : name, email : email}
+                fetch('http://localhost:5000/users',{
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                .then(res => res.json())
+                .then(data=>{
+                    if(data.insertedId){
+
+                        if(data.insertedId){
+
+                            
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'User created successfully.',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            reset();
+                            navigate('/')
+                    
+                        }
+
+
+                    }
+                })
+
+                
             }
             )
             
@@ -56,7 +82,7 @@ const Register = () => {
 
   
     
- 
+
 
 
 
