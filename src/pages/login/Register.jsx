@@ -85,6 +85,28 @@ const Register = () => {
             .then(result =>{
                 setUser(result.user)
                 // navigate(from, {replace: true})
+
+                const saveUser = {name : result.user.displayNane, email : result.user.email}
+                fetch('http://localhost:5000/users',{
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                .then(res => res.json())
+                .then(data=>{
+                            
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'login successfull.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    
+                    
+                })
             
             })
             .catch(error => console.log(error.message))
