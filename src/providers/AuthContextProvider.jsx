@@ -3,6 +3,7 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged,
 
 import { getAuth } from "firebase/auth";
 import { app } from '../../firebase.config';
+import axios from 'axios';
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -45,8 +46,24 @@ const AuthContextProvider = ({ children }) => {
 
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, currentUser=>{
-            setUser(currentUser)
-            setLoader(null)
+
+            console.log(currentUser);
+
+            //get and set JWT token 
+            if(currentUser){
+                axios.post('http://localhost:5000/jwt', {email : currentUser.email})
+                .then(data=>{
+                    localStorage.setItem('access-token', data.data.token);
+                    setUser(currentUser)
+                    setLoader(null)
+
+                })
+            }else{
+                localStorage.removeItem('access-token')
+                setLoader(null)
+
+            }
+
         })
 
         //stop observing after unmount
