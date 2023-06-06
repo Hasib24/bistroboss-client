@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SectionTitle from '../../../components/SectionTitle';
 import FeaturedIng from '../../../assets/home/featured.jpg';
 
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
+
+
 const Featured = () => {
+
+
+    useEffect(()=>{
+    AOS.init({duration : 3000})
+}, [])
+
     return (
         <section className='bg-my bg-fixed'>
             <SectionTitle>Featured</SectionTitle>
             <div className="md:flex justify-center items-center bg-slate-500 bg-opacity-60 pb-20 pt-12 px-36">
                 <div>
-                    <img src={FeaturedIng} alt="" />
+                    <img data-aos='fade-up' src={FeaturedIng} alt="" />
                 </div>
                 <div className="md:ml-10">
                     <p>Aug 20, 2029</p>
